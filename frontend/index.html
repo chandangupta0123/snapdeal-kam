@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Snapdeal AI Virtual KAM</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><div class="logo">S</div><b>Snapdeal</b>&nbsp;AI Virtual KAM <span class="pill">Prototype · mock data only</span></header>
+<main>
+
+<!-- SCREEN 1: DATA -->
+<section id="s-data">
+  <h1>Talk to your AI Key Account Manager</h1>
+  <p class="sub">Bring your own sales data, or try our sample seller account. The voice assistant studies the numbers first, then calls you out on what changed — and asks the right questions.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>📤 Upload your data</h3>
+      <p>Previous vs current period: sales, orders, profit, margin, cancellations, stock-outs… CSV, Excel, JSON or PDF.</p>
+      <label class="drop" id="drop"><input type="file" id="file" accept=".csv,.tsv,.xlsx,.xls,.json,.pdf">Drop a file here or <b>click to browse</b></label>
+      <button class="link" id="tplBtn">⬇ Download CSV template</button>
+      <div class="err" id="err"></div>
+    </div>
+    <div class="card">
+      <h3>🧪 Try the sample dataset</h3>
+      <p>A mock seller whose sales fell from ₹2,00,000 to ₹1,35,000. No upload needed.</p>
+      <button class="btn" id="sampleBtn">Use sample dataset</button>
+      <p class="note" style="margin-top:12px">Items marked <span class="assumed">assumed</span> are extra assumptions we added on top of the assignment data.</p>
+    </div>
+  </div>
+
+  <div class="card" id="preview">
+    <div class="head"><div><b id="pvTitle"></b><div class="note" style="margin:2px 0 0" id="pvSub"></div></div><span class="chip up">Data loaded ✓</span></div>
+    <table id="pvTable"></table>
+  </div>
+
+  <details class="card" style="margin-top:16px" open>
+    <summary>🌐 Voice settings</summary>
+    <div class="set"><label class="f">Conversation language<select id="lang"><option value="en-IN">English (India)</option><option value="hi-IN">हिन्दी (Hindi)</option></select></label></div>
+    <p class="note">The AI (Gemini, free tier) runs on our backend, so no API key is needed here. If Gemini is unavailable the bot falls back to an offline scripted mode. Use <b>Chrome or Edge</b> for voice.</p>
+  </details>
+
+  <div class="cta"><button class="btn" id="startBtn" disabled>📞 Continue to voice call</button><span class="note" id="hint">Load a dataset first.</span></div>
+</section>
+
+<!-- SCREEN 2: CALL -->
+<section id="s-call" hidden>
+  <div class="callgrid">
+    <aside class="card">
+      <h3 style="margin-bottom:2px">Seller account</h3>
+      <div class="note" style="margin:0 0 8px" id="srcLabel"></div>
+      <div id="kpis"></div>
+      <button class="ghost" style="margin-top:12px;width:100%" id="backBtn">← Change data</button>
+    </aside>
+    <div class="card">
+      <div class="stage">
+        <div class="orb" id="orb">🎙️</div>
+        <div id="status">Ready to call</div>
+        <div id="interim"></div>
+      </div>
+      <div id="log"></div>
+      <div class="ctrl">
+        <button class="btn" id="callBtn">📞 Start call</button>
+        <button class="ghost" id="skipBtn" hidden>⏭ Interrupt &amp; talk</button>
+        <button class="ghost" id="endBtn" hidden>🛑 End &amp; summarise</button>
+        <span class="note" id="modeNote" style="margin:0 0 0 auto"></span>
+      </div>
+      <div class="typebox"><input type="text" id="typed" placeholder="Mic not working? Type here and press Enter…"><button class="ghost" id="sendBtn">Send</button></div>
+      <p class="note">Try saying: “My sales have dropped significantly this month. I don’t understand why. Can you help me?”</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="modal" id="modal" hidden><div class="sheet">
+  <h2>📋 Call summary</h2>
+  <h4>Key issues</h4><ul id="sumIssues"></ul>
+  <h4>Recommended actions</h4><ul id="sumActions"></ul>
+  <h4>Next steps</h4><ul id="sumNext"></ul>
+  <div class="ctrl" style="margin-top:20px"><button class="btn" id="againBtn">Start another call</button><button class="ghost" id="closeBtn">Close</button></div>
+</div></div>
+<div id="toast"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
