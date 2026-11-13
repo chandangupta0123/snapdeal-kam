@@ -51,3 +51,6 @@ Open **http://localhost:8000** in Chrome or Edge and allow the microphone.
 - No key or quota exceeded: the bot automatically switches to the offline scripted mode.
 - Sample data = the assignment table, plus **assumed** profit, margin, views and listings (flagged in the UI).
 - Messy PDFs: if the regex parser fails, Gemini extracts the numbers.
+
+
+Final Deployment for testing Purpose only : https://snapdeal-kam-mh3r.onrender.com/
